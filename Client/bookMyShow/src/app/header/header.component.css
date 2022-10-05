@@ -1,0 +1,6 @@
+.titleBox{
+    /* border: 1px solid black; */
+    background-color: red;
+    min-height: 3rem;
+    justify-content: center;
+}
