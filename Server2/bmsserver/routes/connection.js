@@ -8,6 +8,9 @@ var connection = mysql.createConnection({
 
 connection.connect(function(err) {
     if (err) throw err;
+    else{
+        console.log("DB Connection Successfull!!!")
+    }
 });
 
 module.exports=connection

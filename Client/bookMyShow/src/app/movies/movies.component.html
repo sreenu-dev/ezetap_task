@@ -1,1 +1,24 @@
-<p>movies works!</p>
+<app-movie-details *ngIf="showMovieDetailsComponent" [selectedMovieId]="selectedMovieId" (movieDetailsEmitter)="movieDetailsClose($event)" ></app-movie-details>
+<h3>List of Movies</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Cast</th>
+            <th>Language</th>
+            <th>Genre</th>
+            <th>Number of Locations</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of moviesList" >
+            <td scope="row">{{data.name}}</td>
+            <td>{{data.cast}}</td>
+            <td>{{data.language}}</td>
+            <td>{{data.genre}}</td>
+            <td>{{getLocationCount(data.movie_id)}}</td>
+            <td><div class="btn btn-primary" (click)="showMovieDetails(data.movie_id)" >View Details</div></td>
+        </tr>
+    </tbody>
+</table>

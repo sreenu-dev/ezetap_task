@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  moviesRoute:'http://localhost:3000/movies/moviesData',
+  theatresRoute:'http://localhost:3000/movies/theatresData',
+  theatreMoviesRoute:'http://localhost:3000/movies/theatremoviesData',
+  adminDataRoute:'http://localhost:3000/movies/adminData'
 };
 
 /*

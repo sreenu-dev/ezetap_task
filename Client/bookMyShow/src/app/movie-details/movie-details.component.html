@@ -1,1 +1,41 @@
-<p>movie-details works!</p>
+<div class="container" style="position:absolute; padding-left: 12rem;padding-top: 5rem;">
+    <div class="customModal">
+        <div class="heading">
+            <div class="title"><span class="h2">{{selectedMovieName}}</span></div>
+            <div class="closeButton ms-auto" (click)="closePopup()" ><div class="btn btn-danger">X</div></div>
+        </div>
+        <div class="filterArea">
+            <div ngbDropdown class="locationFilter ms-auto">
+                <button type="button" class="btn btn-outline-primary" id="locDrop" ngbDropdownToggle>{{selectedLocation}}</button>
+                <div ngbDropdownMenu aria-labelledby="locDrop">
+                    <button ngbDropdownItem *ngFor="let item of locationList" (click)="setLocation(item)" >{{item}}</button>
+                </div>
+            </div>
+        </div>
+        <div class="body">
+            <div *ngIf="selectedLocation=='Select Location'" class="noLocation">
+                Please select location to proceed
+            </div>
+            <div *ngIf="selectedLocation!='Select Location'">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Theatre Name</th>
+                            <th>Timings</th>
+                            <th>Location</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let theatre of filteredTheatreList">
+                            <td scope="row">{{theatre.name}}</td>
+                            <td>{{theatre.timings}}</td>
+                            <td>{{theatre.location}}</td>
+                            <td>{{getPrice(theatre.theatre_id)}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
