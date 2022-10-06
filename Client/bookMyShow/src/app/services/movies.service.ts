@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 
@@ -22,5 +23,8 @@ export class MoviesService {
   }
   getAdminData():any{
     return this.httpClient.get(environment.adminDataRoute);
+  }
+  saveMovie(data:any):Observable<any>{
+    return this.httpClient.post(environment.saveMovieRoute,data);
   }
 }

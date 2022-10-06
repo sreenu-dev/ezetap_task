@@ -1,6 +1,16 @@
 .titleBox{
+    display: flex;
     /* border: 1px solid black; */
     background-color: red;
     min-height: 3rem;
-    justify-content: center;
+}
+.title{
+    font-size: 2rem;
+    cursor: pointer;
+}
+.addMovie{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 5rem;
+    margin-left: auto;
 }

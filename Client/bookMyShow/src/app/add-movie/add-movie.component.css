@@ -1,0 +1,17 @@
+.addImage{
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+}
+.theatreDropdown{
+    width: 27.8rem;
+    margin-right: 1.5rem;
+}
+.theatreDropdownlist{
+    width: 27.8rem;
+}
+.addMovieContainer{
+    margin-top: 1rem;
+    border: 1px solid black;
+    padding: 3rem;
+}

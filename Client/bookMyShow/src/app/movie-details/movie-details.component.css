@@ -13,3 +13,12 @@
     text-align: center;
     padding: 10rem;
 }
+.modalBody{
+    min-height: 20rem;
+}
+.closeImage{
+    margin-right: 0.5rem;
+    width: 1rem;
+    height: 2rem;
+    cursor: pointer;
+}

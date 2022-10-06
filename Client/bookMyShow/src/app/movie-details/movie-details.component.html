@@ -2,7 +2,7 @@
     <div class="customModal">
         <div class="heading">
             <div class="title"><span class="h2">{{selectedMovieName}}</span></div>
-            <div class="closeButton ms-auto" (click)="closePopup()" ><div class="btn btn-danger">X</div></div>
+            <div class="closeButton ms-auto" (click)="closePopup()" ><img class="closeImage" src="../../assets/images/close.svg"></div>
         </div>
         <div class="filterArea">
             <div ngbDropdown class="locationFilter ms-auto">
@@ -12,7 +12,7 @@
                 </div>
             </div>
         </div>
-        <div class="body">
+        <div class="modalBody">
             <div *ngIf="selectedLocation=='Select Location'" class="noLocation">
                 Please select location to proceed
             </div>

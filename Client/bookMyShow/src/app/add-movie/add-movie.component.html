@@ -1,0 +1,71 @@
+<div class="d-flex justify-content-center">
+    <form [formGroup]="moviesForm">
+        <div class="container addMovieContainer">
+            <div class="row">
+                <div class="col-12" style="text-align:center">
+                    <h3>Add Movie details below</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                      <label for="">Movie Name</label>
+                      <input type="text" class="form-control" formControlName="name" name="" id="" aria-describedby="helpId" placeholder="">
+                      <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                      <label for="">Cast</label>
+                      <input type="text" formControlName="cast"
+                        class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+                      <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                      <label for="">Language</label>
+                      <input type="text" formControlName="language"
+                        class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+                      <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                      <label for="">Genre</label>
+                      <input type="text" formControlName="genre"
+                        class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+                      <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="" style="width: 100%;">Theatre</label>
+                        <div ngbDropdown style="display:inline;">
+                            <button type="button" class="btn btn-outline-primary theatreDropdown" id="locDrop" ngbDropdownToggle>{{selectedTheatre}}</button>
+                            <div ngbDropdownMenu aria-labelledby="locDrop">
+                                <button ngbDropdownItem class="theatreDropdownlist" *ngFor="let theatre of theatreList" (click)="selectTheatre(theatre.theatre_id,theatre.name)" >{{theatre.name}}</button>
+                            </div>
+                        </div>
+                        <div style="display: inline;">
+                            <img class="addImage" title="Add New Theatre" src="../../assets/images/add.svg">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                      <label for="">Price</label>
+                      <input type="number" formControlName="price"
+                        class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+                      <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="text-align: center;">
+                <div class="col-12" style="margin-top: 2rem;">
+                    <button class="btn btn-primary" (click)="addMovie()" >Submit</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
