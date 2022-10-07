@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Theatre } from '../models/theatre.model';
 import { MoviesService } from '../services/movies.service';
@@ -17,6 +17,8 @@ export class AddMovieComponent implements OnInit {
   moviesLength:number=-1;
   theatresLength:number=-1;
   theatreMoviesLength:number=-1;
+
+  @Output() addMovieEmitter:EventEmitter<any>=new EventEmitter();
   constructor(
     private moviesService: MoviesService
   ) { }
@@ -24,8 +26,7 @@ export class AddMovieComponent implements OnInit {
     'name':new FormControl(null,[Validators.required]),
     'cast':new FormControl(null,[Validators.required]),
     'language':new FormControl(null,[Validators.required]),
-    'genre':new FormControl(null,[Validators.required]),
-    'price':new FormControl(null,[Validators.required])
+    'genre':new FormControl(null,[Validators.required])
   });
 
   ngOnInit(): void {
@@ -39,26 +40,26 @@ export class AddMovieComponent implements OnInit {
     })
   }
   addMovie(){
-    if(this.moviesForm.valid && this.selectedTheaterId!=-1){
+    if(this.moviesForm.valid){
       let newMovieData:AddMovieData=new AddMovieData();
       newMovieData.movie_id=this.moviesLength+1;
-      newMovieData.theatreMovie_id=this.theatreMoviesLength+1;
       newMovieData.name=this.moviesForm.controls['name'].value;
       newMovieData.cast=this.moviesForm.controls['cast'].value;
       newMovieData.language=this.moviesForm.controls['language'].value;
       newMovieData.genre=this.moviesForm.controls['genre'].value;
-      newMovieData.theatre=this.selectedTheaterId;
-      newMovieData.price=this.moviesForm.controls['price'].value;
-      this.moviesService.saveMovie(newMovieData).subscribe(data=>{
+      this.moviesService.saveMovie(newMovieData).subscribe((data:any)=>{
         console.log(data);
+        this.closePopup();
       })
-    }else{
-      alert("Please fill all the details")
+      
     }
   }
   selectTheatre(id:any,name:string){
     console.log(name)
     this.selectedTheatre=name;
     this.selectedTheaterId=id;
+  }
+  closePopup(){
+    this.addMovieEmitter.emit("close");
   }
 }

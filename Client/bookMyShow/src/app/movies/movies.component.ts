@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Movie } from '../models/movie.model';
 import { TheatreMovie } from '../models/theatre-movie.model';
 import { Theatre } from '../models/theatre.model';
@@ -11,27 +12,19 @@ import { MoviesService } from '../services/movies.service';
 })
 export class MoviesComponent implements OnInit {
   constructor(
-    private moviesService: MoviesService
+    private moviesService: MoviesService,
+    private router:Router
   ) { }
   selectedMovieId:number=-1;
   showMovieDetailsComponent=false;
+  showAddMovie:boolean=false;
   moviesList:Movie[]=[];
   theatreMoviesList:TheatreMovie[]=[];
   theatreList:Theatre[]=[];
   ngOnInit(): void {
-    // this.moviesService.getMovieDetails().subscribe((data:any)=>{
-    //   if(data!=null && data.length!=0){
-    //     this.moviesList=data;
-    //   }
-    // })
-    // this.moviesService.getTheatreMoviesDetails().subscribe((data:any)=>{
-    //   this.theatreMoviesList=data;
-    // })
-    // this.moviesService.getTheatreDetails().subscribe((data:any)=>{
-    //   if(data!=null && data.length!=0){
-    //     this.theatreList=data;
-    //   }
-    // })
+   this.loadMoviesList(); 
+  }
+  loadMoviesList(){
     this.moviesService.getAdminData().subscribe((data:any)=>{
       if(data!=null){
         this.moviesList=data.movies
@@ -52,7 +45,7 @@ export class MoviesComponent implements OnInit {
   }
 
   showMovieDetails(movieID:number){
-    if(!this.showMovieDetailsComponent){
+    if(!this.showMovieDetailsComponent && !this.showAddMovie){
       this.selectedMovieId=movieID;
       this.showMovieDetailsComponent=true;
     }
@@ -61,6 +54,11 @@ export class MoviesComponent implements OnInit {
     console.log(event);
     this.selectedMovieId=-1;
     this.showMovieDetailsComponent=false;
+    this.showAddMovie=false;
+    this.loadMoviesList();
+  }
+  addMovie(){
+    this.showAddMovie=true;
   }
 
 }

@@ -1,10 +1,13 @@
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center addMovieModal">
     <form [formGroup]="moviesForm">
         <div class="container addMovieContainer">
             <div class="row">
-                <div class="col-12" style="text-align:center">
+                <div class="col-11" style="text-align:center">
                     <h3>Add Movie details below</h3>
                 </div>
+                <div class="col-1">
+                  <div class="closeButton ms-auto" (click)="closePopup()" ><img class="closeImage" src="../../assets/images/close.svg"></div>
+              </div>
             </div>
             <div class="row">
                 <div class="col-6">
@@ -38,7 +41,7 @@
                       <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
                     </div>
                 </div>
-                <div class="col-6">
+                <!-- <div class="col-6">
                     <div class="form-group">
                         <label for="" style="width: 100%;">Theatre</label>
                         <div ngbDropdown style="display:inline;">
@@ -51,15 +54,15 @@
                             <img class="addImage" title="Add New Theatre" src="../../assets/images/add.svg">
                         </div>
                     </div>
-                </div>
-                <div class="col-6">
+                </div> -->
+                <!-- <div class="col-6">
                     <div class="form-group">
                       <label for="">Price</label>
                       <input type="number" formControlName="price"
                         class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
-                      <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
+                      <small id="helpId" class="form-text text-muted">Help text</small>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="row" style="text-align: center;">
                 <div class="col-12" style="margin-top: 2rem;">

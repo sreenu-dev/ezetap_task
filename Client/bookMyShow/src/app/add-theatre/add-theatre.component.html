@@ -1,0 +1,49 @@
+<form [formGroup]="theatreForm">
+    <div class="container customModal">
+        <div class="d-flex">
+            <div>
+                <div class="h3">Add Theatre for {{selectedMovieName}}</div>
+            </div>
+            <div class="ms-auto">
+                <div class="closeButton ms-auto" (click)="closePopup()" ><img class="closeImage" src="../../assets/images/close.svg"></div>
+            </div>
+        </div>
+        <div class="row p-4">
+            <div class="col-6">
+                <div class="form-group">
+                  <label for="">Name</label>
+                  <input type="text" formControlName="name"
+                    class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+                  <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                  <label for="">Location</label>
+                  <input type="text" formControlName="location"
+                    class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+                  <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                  <label for="">Timings</label>
+                  <input type="text" formControlName="timings"
+                    class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+                  <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                  <label for="">Movie Price</label>
+                  <input type="number" formControlName="price"
+                    class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+                  <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
+                </div>
+            </div>
+            <div class="col-12 pt-4" style="text-align: center;">
+                <button class="btn btn-primary" (click)="saveTheatre()" >Submit</button>
+            </div>
+        </div>
+    </div>
+</form>

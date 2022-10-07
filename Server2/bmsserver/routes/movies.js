@@ -68,22 +68,26 @@ router.post('/saveMovie',(req,res)=>{
                     if(err){
                         res.send("fail at movies"+JSON.stringify(err))
                     }else{
-                        db.query(theatreMovieInsertQuery,(err,row)=>{
-                            if(err){
-                                res.send("fail at theatre movies"+JSON.stringify(err))
-                            }else{
-                                res.send("success")
-                            }
-                        })
+                        res.send(JSON.stringify("success"));
                     }
                 })
-            }else{
-                theatreMovieInsertQuery=`INSERT INTO theatremovies (theatremovies_id, theatre_id, movie_id, price) VALUES (${req.body.theatreMovie_id}, ${req.body.theatre}, ${row[0].movie_id}, ${req.body.price})`;
-                db.query(theatreMovieInsertQuery,(err,row)=>{
+            }
+        }
+    })
+})
+router.post('/saveTheatre',(req,res)=>{
+    let theartreQuery=`INSERT INTO theatre (theatre_id, name, timings, location) VALUES (${req.body.theatre_id}, '${req.body.name}', '${req.body.timings}', '${req.body.location}')`
+    db.query(theartreQuery,(err,row)=>{
+        if(err){
+            res.send(JSON.stringify(err))
+        }else{
+            if(req.body.movie_id!=null && req.body.movie_id!=-1 && req.body.movie_id!=undefined){
+                let theaterMovieQuery=`INSERT INTO theatremovies (theatremovies_id, theatre_id, movie_id, price) VALUES (${req.body.theatreMovie_id}, ${req.body.theatre_id}, ${req.body.movie_id}, ${req.body.price})`;
+                db.query(theaterMovieQuery,(err,row)=>{
                     if(err){
-                        res.send("fail at theatre movies"+JSON.stringify(err))
+                        res.send(JSON.stringify(err));
                     }else{
-                        res.send("success")
+                        res.send("success");
                     }
                 })
             }

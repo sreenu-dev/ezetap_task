@@ -1,5 +1,13 @@
 <app-movie-details *ngIf="showMovieDetailsComponent" [selectedMovieId]="selectedMovieId" (movieDetailsEmitter)="movieDetailsClose($event)" ></app-movie-details>
-<h3>List of Movies</h3>
+<app-add-movie *ngIf="showAddMovie" (addMovieEmitter)="movieDetailsClose($event)"></app-add-movie>
+<div class="d-flex" style="margin-top: 0.5rem;">
+    <div style="margin-left: auto;">
+        <h3>List of Movies</h3>
+    </div>
+    <div class="addMovie">
+        <div class="btn btn-danger" style="margin-top: 0.3rem;margin-right: 1rem;" (click)="addMovie()" [hidden]="showAddMovie">Add Movie</div>
+    </div>
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -17,7 +25,7 @@
             <td>{{data.cast}}</td>
             <td>{{data.language}}</td>
             <td>{{data.genre}}</td>
-            <td>{{getLocationCount(data.movie_id)}}</td>
+            <td style="text-align: center;">{{getLocationCount(data.movie_id)}}</td>
             <td><div class="btn btn-primary" (click)="showMovieDetails(data.movie_id)" >View Details</div></td>
         </tr>
     </tbody>

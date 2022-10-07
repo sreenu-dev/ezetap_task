@@ -4,3 +4,7 @@ export interface Theatre {
     timings:string;
     location:string;
 }
+export interface TheatreLocation{
+    item_id:string;
+    item_text:string;
+}

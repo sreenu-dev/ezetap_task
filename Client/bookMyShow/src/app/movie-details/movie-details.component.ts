@@ -1,9 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Movie } from '../models/movie.model';
 import { TheatreMovie } from '../models/theatre-movie.model';
-import { Theatre } from '../models/theatre.model';
+import { Theatre, TheatreLocation } from '../models/theatre.model';
 import { MoviesService } from '../services/movies.service';
 import { forkJoin } from "rxjs";
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { AdminData } from '../models/admindata.model';
 
 @Component({
   selector: 'app-movie-details',
@@ -14,23 +16,38 @@ export class MovieDetailsComponent implements OnInit {
   @Input() selectedMovieId:number=-1;
  
   @Output() movieDetailsEmitter: EventEmitter<any>=new EventEmitter();
-
   moviesList:Movie[]=[];
   theatreMoviesList:TheatreMovie[]=[];
   theatreList:Theatre[]=[];
   theatreListCopy:Theatre[]=[];
   filteredTheatreList:Theatre[]=[];
   locationList:string[]=[];
+  locationData:TheatreLocation[]=[];
   selectedMovieName:string="";
   requiredTheatreIDs:number[]=[];
   selectedLocation:string="Select Location";
+  selectedLocations:TheatreLocation[]=[];
+  showLocationDropdown:boolean=false;
+  adminData:AdminData;
+
+  multiSelectDropdownSettings={};
+
+  showAddTheatre:boolean=false;
+
   constructor(
     private moviesService: MoviesService
-  ) { }
+  ) {
+    this.adminData=new AdminData();
+   }
 
   ngOnInit(): void {
-    this.moviesService.getAdminData().subscribe((data:any)=>{
+    this.loadMovieDetails();
+  }
+  loadMovieDetails(){
+    this.showLocationDropdown=false;
+    this.moviesService.getAdminData().subscribe((data:AdminData)=>{
       if(data!=null){
+        this.adminData=data;
         this.moviesList=data.movies
         let movieName=this.moviesList.find(x=>x.movie_id==this.selectedMovieId)?.name;
         this.selectedMovieName=(movieName!=undefined)?movieName:'';
@@ -48,26 +65,6 @@ export class MovieDetailsComponent implements OnInit {
         this.theatreList=this.theatreList.filter(x=>this.requiredTheatreIDs.includes(x.theatre_id));
       }
     })
-    // this.moviesService.getMovieDetails().subscribe((data:any)=>{
-    //   if(data!=null && data.length!=0){
-    //     this.moviesList=data;
-    //     let movieName=this.moviesList.find(x=>x.movie_id==this.selectedMovieId)?.name;
-    //     this.selectedMovieName=(movieName!=undefined)?movieName:'';
-    //   }
-    // })
-    // this.moviesService.getTheatreMoviesDetails().subscribe((data:any)=>{
-    //   if(data!=null && data.length!=0){
-    //     this.theatreMoviesList=data;
-    //   }
-    // })
-    // this.moviesService.getTheatreDetails().subscribe((data:any)=>{
-    //   if(data!=null && data.length!=0){
-    //     this.theatreList=data;
-    //   }
-    // })
-    // setTimeout(()=>{
-    //   this.getLocationList();
-    // },1000)
   }
   closePopup(){
     this.movieDetailsEmitter.emit('closed');
@@ -76,10 +73,21 @@ export class MovieDetailsComponent implements OnInit {
     let theatresFilter=this.theatreMoviesList.filter(x=>x.movie_id==this.selectedMovieId);
     theatresFilter.forEach(a=>{
       let templocation=this.theatreList.find(t=>t.theatre_id==a.theatre_id)?.location;
-      if(templocation!=undefined){
+      if(templocation!=undefined && this.locationData.find(x=>x.item_id==templocation)==undefined){
+        let locationDetail={item_id:templocation,item_text:templocation};
         this.locationList.push(templocation);
+        this.locationData.push(locationDetail);
       }
     })
+    this.multiSelectDropdownSettings={
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 1
+    }
+    this.showLocationDropdown=true;
   }
   setLocation(name:string){
     this.selectedLocation=name;
@@ -88,5 +96,29 @@ export class MovieDetailsComponent implements OnInit {
   getPrice(id:number){
     let price=this.theatreMoviesList.find(x=>x.movie_id==this.selectedMovieId && x.theatre_id==id)?.price;
     return (price!=undefined)?price:'Not Available';
+  }
+  selectLocation(event:any,type:string="none"){
+    console.log(event);
+    console.log(this.selectedLocations);
+    let locationList:any[]=[]
+    if(type=="none"){
+      locationList=this.selectedLocations.map(a=>a.item_id);
+    }else{
+      locationList=event.map((a:any)=>a.item_id);
+    }
+    
+    this.filteredTheatreList=this.theatreList.filter(x=>locationList.includes(x.location));
+  }
+  addTheatre(){
+      this.showAddTheatre=true;
+  }
+  updateMovieDetails(event:any){
+    if(event=='close'){
+      this.showAddTheatre=false;
+    }
+    else if(event=='update'){
+      this.showAddTheatre=false;
+      this.loadMovieDetails();
+    }
   }
 }

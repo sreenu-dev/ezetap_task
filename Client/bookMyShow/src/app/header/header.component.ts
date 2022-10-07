@@ -14,9 +14,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  addMovie(){
-    this.router.navigate(['/addMovie']);
-  }
   goToLanding(){
     this.router.navigate(['/landing']);
   }

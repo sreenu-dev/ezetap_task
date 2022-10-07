@@ -1,22 +1,40 @@
 <div class="container" style="position:absolute; padding-left: 12rem;padding-top: 5rem;">
     <div class="customModal">
+        <app-add-theatre [selectedMovieId]="selectedMovieId" [selectedMovieName]="selectedMovieName" [adminData]="adminData" *ngIf="showAddTheatre" (addTheatreEmitter)="updateMovieDetails($event)"></app-add-theatre>
         <div class="heading">
             <div class="title"><span class="h2">{{selectedMovieName}}</span></div>
             <div class="closeButton ms-auto" (click)="closePopup()" ><img class="closeImage" src="../../assets/images/close.svg"></div>
         </div>
         <div class="filterArea">
-            <div ngbDropdown class="locationFilter ms-auto">
+            <div>
+                <div class="btn btn-primary" (click)="addTheatre()">Add Theatre</div>
+            </div>
+            <div class="ms-auto locationDropdown">
+                <ng-multiselect-dropdown *ngIf="showLocationDropdown"
+                    [placeholder]="'Select Location'"
+                    [settings]="multiSelectDropdownSettings"
+                    [data]="locationData"
+                    [(ngModel)]="selectedLocations"
+                    (onDropDownClose)="selectLocation($event)"
+                    (onSelect)="selectLocation($event)"
+                    (onSelectAll)="selectLocation($event,'selectAll')"
+                    (onDeSelect)="selectLocation($event)"
+                    (onDeSelectAll)="selectLocation($event)"
+                >
+                </ng-multiselect-dropdown>
+            </div>
+            <!-- <div ngbDropdown class="locationFilter ms-auto">
                 <button type="button" class="btn btn-outline-primary" id="locDrop" ngbDropdownToggle>{{selectedLocation}}</button>
                 <div ngbDropdownMenu aria-labelledby="locDrop">
                     <button ngbDropdownItem *ngFor="let item of locationList" (click)="setLocation(item)" >{{item}}</button>
                 </div>
-            </div>
+            </div> -->
         </div>
         <div class="modalBody">
-            <div *ngIf="selectedLocation=='Select Location'" class="noLocation">
+            <div *ngIf="selectedLocations.length==0" class="noLocation">
                 Please select location to proceed
             </div>
-            <div *ngIf="selectedLocation!='Select Location'">
+            <div *ngIf="selectedLocations.length!=0">
                 <table class="table">
                     <thead>
                         <tr>

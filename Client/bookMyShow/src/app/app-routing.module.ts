@@ -7,7 +7,7 @@ import { MoviesComponent } from './movies/movies.component';
 const routes: Routes = [
   {path:'',component:LandingPageComponent},
   {path:'movies',component:MoviesComponent},
-  {path:'addMovie',component:AddMovieComponent},
+  // {path:'addMovie',component:AddMovieComponent},
   {path:'**',component:LandingPageComponent}
 ];
 

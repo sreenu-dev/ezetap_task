@@ -22,3 +22,7 @@
     height: 2rem;
     cursor: pointer;
 }
+.locationDropdown{
+    width: 10rem;
+    margin-right: 2rem;
+}

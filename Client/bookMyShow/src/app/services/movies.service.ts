@@ -27,4 +27,7 @@ export class MoviesService {
   saveMovie(data:any):Observable<any>{
     return this.httpClient.post(environment.saveMovieRoute,data);
   }
+  saveTheatre(data:any):Observable<any>{
+    return this.httpClient.post(environment.saveTheatreRoute,data);
+  }
 }
