@@ -36,5 +36,5 @@ Link for the deployed Website : [BookMyShow Admin Page](https://bmsclient.z13.we
       - router: To enable routing between pages
 ### Coding Details
     The UI Code is in Client/bookMyShow
-    The backend code is in bmsserver
+    The backend code is in Server2/bmsserver
     MySQL Scheme is uploaded naming dbschema.sql
