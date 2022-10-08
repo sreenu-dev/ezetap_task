@@ -32,5 +32,5 @@ Link for the deployed Website : [BookMyShow Admin Page](https://bmsclient.z13.we
     - Packages used in Frontend:
       - Bootstrap: Bootstrap is used to enhance the visual representation of the application
       - ng-multiselect-dropdown: Used to generate multiselect dropdowns
-      - ngx-toaster: To show the toaster messages when ever any opearation is successful
+      - ngx-toaster: To show the toaster messages when any opearation is successful
       - router: To enable routing between pages
