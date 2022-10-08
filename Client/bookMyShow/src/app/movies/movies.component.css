@@ -14,6 +14,9 @@
     width: 98%;
     margin-top: 1rem;
 }
+.tableFit td{
+    vertical-align: middle;
+}
 .moviesTitle{
     font-size: 19px;
     font-style: italic;
