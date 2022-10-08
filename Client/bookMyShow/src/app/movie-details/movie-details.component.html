@@ -1,15 +1,20 @@
 <div class="overlay">
-    <div class="container" *ngIf="showMovieDetail" style="position:absolute; padding-left: 12rem;padding-top: 5rem;z-index: 9;">
+    <div class="container" *ngIf="showMovieDetail" style="position:absolute;z-index: 9;">
         <div class="customModal">
             <app-add-theatre [selectedMovieId]="selectedMovieId" [selectedMovieName]="selectedMovieName" [adminData]="adminData" *ngIf="showAddTheatre" (addTheatreEmitter)="updateMovieDetails($event)"></app-add-theatre>
             <app-edit-theatre *ngIf="showEditTheatre" [adminData]="adminData" [selectedMovieId]="selectedMovieId" [selectedTheatreId]="selectedTheatreId" (updateTheatreEmitter)="updateMovieDetails($event)"></app-edit-theatre>
             <div class="heading">
                 <div class="title"><span class="h2">{{selectedMovieName}}</span></div>
-                <div class="closeButton ms-auto" (click)="closePopup()" ><img class="closeImage" src="../../assets/images/close.svg"></div>
+                <!-- <div>
+                    <div class="btn btn-close"></div>
+                </div> -->
+                <div class="closeButton ms-auto btn btn-close closeImage" (click)="closePopup()" >
+                    <!-- <img class="closeImage" src="../../assets/images/close.svg"> -->
+                </div>
             </div>
             <div class="filterArea">
                 <div>
-                    <div class="btn btn-primary" (click)="addTheatre()">Add Theatre</div>
+                    <div class="btn btn-primary ms-3" (click)="addTheatre()">Add Theatre</div>
                 </div>
                 <div class="ms-auto locationDropdown">
                     <ng-multiselect-dropdown *ngIf="showLocationDropdown"
@@ -36,7 +41,7 @@
                 <div *ngIf="selectedLocations.length==0" class="noLocation">
                     Please select location to proceed
                 </div>
-                <div *ngIf="selectedLocations.length!=0">
+                <div *ngIf="selectedLocations.length!=0" class="tableArea">
                     <table class="table">
                         <thead>
                             <tr>

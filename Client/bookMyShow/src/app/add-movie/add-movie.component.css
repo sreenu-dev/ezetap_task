@@ -11,8 +11,7 @@
     width: 27.8rem;
 }
 .addMovieContainer{
-    border: 1px solid black;
-    padding: 3rem;
+    padding: 1rem;
 }
 .closeImage{
     width: 1rem;
@@ -26,8 +25,9 @@
 .addMovieModal{
     position: absolute;
     background-color: white;
-    margin-left: 11rem;
     margin-top: 1rem;
     box-shadow: 1px 5px 5px black;
     z-index: 9;
+    border-radius: 1rem;
+    border: 1px solid;
 }

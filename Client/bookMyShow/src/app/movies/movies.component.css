@@ -3,9 +3,14 @@
 }
 .filterArea{
     flex-direction: row-reverse;
+    margin-top: 1rem;
 }
 .Sort{
     cursor: pointer;
     display: flex;
     flex-direction: row;
+}
+.tableFit{
+    width: 98%;
+    margin-top: 1rem;
 }

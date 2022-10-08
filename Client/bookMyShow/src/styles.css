@@ -7,4 +7,24 @@
     height: 100vh;
     background: rgba(255,255,255,0.5);
     z-index: 9;
+    display: flex;
+    justify-content: center;
+}
+.overlayInner{
+    position: absolute;
+    /* width: 100vw; */
+    height: 100vh;
+    background: rgba(255,255,255,0.5);
+    z-index: 9;
+    display: flex;
+    justify-content: center;
+}
+.overlayAddTheatre{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255,255,255,0.5);
+    z-index: 9;
+    /* display: flex; */
+    /* justify-content: center;*/
 }

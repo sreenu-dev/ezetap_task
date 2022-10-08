@@ -1,11 +1,13 @@
 .editCustomModal{
-    position: absolute;
     background-color: white;
     border: 1px solid black;
     box-shadow: 1px 5px 5px black;
     border-radius: 1rem;
     z-index: 99999;
-    width: 58.5rem;
+    /* width: 81.6vw; */
+    margin: 8px 0px;
+    /* height: 70vh; */
+    margin: 4rem 0rem;
 }
 .closeImage{
     width: 1rem;

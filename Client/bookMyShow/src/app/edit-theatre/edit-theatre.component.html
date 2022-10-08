@@ -1,11 +1,11 @@
-<div class="overlay">
+<div class="overlayInner" style="width: 81.6vw;height: auto;">
   <div class="container editCustomModal">
     <div class="d-flex">
-        <div>
+        <div class="p-3">
             <h3>Edit Details for {{selectedMovieName}}</h3>
         </div>
-        <div class="ms-auto">
-            <div class="closeButton ms-auto" (click)="closePopup()" ><img class="closeImage" src="../../assets/images/close.svg"></div>
+        <div class="ms-auto m-3">
+            <div class="closeButton ms-auto btn btn-close" (click)="closePopup()" ></div>
         </div>
     </div>
     <form *ngIf="showEditForm" [formGroup]="theatreForm">
