@@ -39,7 +39,8 @@
             </div>
             <div class="modalBody">
                 <div *ngIf="selectedLocations.length==0" class="noLocation">
-                    Please select location to proceed
+                    <span *ngIf="locationData.length!=0">Please select location to proceed</span>
+                    <span *ngIf="locationData.length==0">Please Add Theatre</span>
                 </div>
                 <div *ngIf="selectedLocations.length!=0" class="tableArea">
                     <table class="table">

@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Theatre } from '../models/theatre.model';
 import { MoviesService } from '../services/movies.service';
 import { AddMovieData } from "../models/add-movie.model";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: 'app-add-movie',
@@ -20,7 +21,8 @@ export class AddMovieComponent implements OnInit {
 
   @Output() addMovieEmitter:EventEmitter<any>=new EventEmitter();
   constructor(
-    private moviesService: MoviesService
+    private moviesService: MoviesService,
+    private toaster:ToastrService
   ) { }
   moviesForm:FormGroup=new FormGroup({
     'name':new FormControl(null,[Validators.required]),
@@ -49,7 +51,13 @@ export class AddMovieComponent implements OnInit {
       newMovieData.genre=this.moviesForm.controls['genre'].value;
       this.moviesService.saveMovie(newMovieData).subscribe((data:any)=>{
         console.log(data);
-        this.closePopup();
+        if(data=='success'){
+          this.toaster.success("Movie Added Successfully");
+          this.closePopup();
+        }else{
+          this.toaster.error("Failed to add movie Data");
+        }
+        
       })
       
     }

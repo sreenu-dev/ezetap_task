@@ -49,7 +49,9 @@ export class MovieDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.loadMovieDetails();
   }
-  loadMovieDetails(){
+  loadMovieDetails(event:any=undefined){
+    if(event=="add")
+      this.selectedLocations=[];
     this.showMovieDetail=false;
     this.showLocationDropdown=false;
     this.moviesService.getAdminData().subscribe((data:AdminData)=>{
@@ -128,10 +130,10 @@ export class MovieDetailsComponent implements OnInit {
       this.showAddTheatre=false;
       this.showEditTheatre=false;
     }
-    else if(event=='update'){
+    else if(event=='update' || event=='add'){
       this.showAddTheatre=false;
       this.showEditTheatre=false;
-      this.loadMovieDetails();
+      this.loadMovieDetails(event);
     }
   }
   editTheatreDetails(theatre_id:number){

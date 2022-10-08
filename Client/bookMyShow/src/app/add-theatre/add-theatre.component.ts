@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AddTheatreData } from '../models/add-theatre.model';
 import { AdminData } from '../models/admindata.model';
 import { MoviesService } from '../services/movies.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-theatre',
@@ -26,7 +27,8 @@ export class AddTheatreComponent implements OnInit {
   });
 
   constructor(
-    private moviesService:MoviesService
+    private moviesService:MoviesService,
+    private toaster:ToastrService
   ) {
     this.adminData=new AdminData();
    }
@@ -47,9 +49,13 @@ export class AddTheatreComponent implements OnInit {
       theatreAddData.theatre_id=this.adminData.theatres.length+1;
       theatreAddData.theatreMovie_id=this.adminData.theatreMovies.length+1;
       this.moviesService.saveTheatre(theatreAddData).subscribe((data:any)=>{
-        console.log(data);
+        if(data=='success'){
+          this.toaster.success("Theater Added Successfully");
+          this.addTheatreEmitter.emit("add");
+        }else{
+          this.toaster.error("Failed to Add Theatre")
+        }
       })
     }
-    this.addTheatreEmitter.emit("update");
   }
 }

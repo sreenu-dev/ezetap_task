@@ -17,6 +17,7 @@ import { CommonModule } from '@angular/common';
 import { AddTheatreComponent } from './add-theatre/add-theatre.component';
 import { EditTheatreComponent } from './edit-theatre/edit-theatre.component';
 import { SideNavBarComponent } from './side-nav-bar/side-nav-bar.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { SideNavBarComponent } from './side-nav-bar/side-nav-bar.component';
     HttpClientModule,
     BrowserAnimationsModule,
     NgbModule,
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

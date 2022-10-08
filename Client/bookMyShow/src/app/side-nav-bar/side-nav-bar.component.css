@@ -16,8 +16,9 @@
     padding: 1rem 0rem;
     padding-right: 1rem;
     cursor: pointer;
+    color: white;
 }
 .sideBarTitle{
     padding-bottom : 1rem;
-    border-bottom: 1px dotted;
+    border-bottom: 1px dotted white;
 }

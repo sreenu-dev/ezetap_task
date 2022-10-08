@@ -6,6 +6,7 @@ import { Movie } from '../models/movie.model';
 import { TheatreMovie } from '../models/theatre-movie.model';
 import { Theatre } from '../models/theatre.model';
 import { MoviesService } from '../services/movies.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-theatre',
@@ -37,7 +38,8 @@ export class EditTheatreComponent implements OnInit {
     'price':new FormControl(null,[Validators.required])
   });
   constructor(
-    private moviesService:MoviesService
+    private moviesService:MoviesService,
+    private toaster:ToastrService
   ) {
     this.adminData=new AdminData();
    }
@@ -70,7 +72,12 @@ export class EditTheatreComponent implements OnInit {
       theatreAddData.theatreMovie_id=theatreMovieId!=undefined?theatreMovieId:-1;
       this.moviesService.updateTheatre(theatreAddData).subscribe((data:any)=>{
         console.log(data);
-        this.closePopup();
+        if(data=='success'){
+          this.toaster.success("Theatre Details Updated Successfully")
+          this.closePopup();
+        }else{
+          this.toaster.error("Failed to update theatre Details")
+        }
       })
     }
   }
