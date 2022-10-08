@@ -6,6 +6,7 @@ var connection = mysql.createConnection({
     database : 'bmsezetap'
 });
 
+//For local uncomment the below code
 // var connection = mysql.createConnection({
 //     host     : 'localhost',
 //     user     : 'root',
