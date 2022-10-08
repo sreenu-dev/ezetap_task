@@ -18,3 +18,23 @@
     font-size: 19px;
     font-style: italic;
 }
+.loader{
+    margin-bottom: auto;
+    margin-top: auto;
+    border: 1px solid;
+    padding: 1rem;
+    box-shadow: 1px 5px 5px black;
+    border-radius: 1rem;
+    background-color: #ffffff;
+    color: #e9384c;
+}
+.loadingScreen{
+    display: flex;
+    justify-content: center;
+    height: 80vh;
+}
+.spinnerCustom{
+    width: 1rem;
+    height: 1rem;
+    color: #e9384c;
+}

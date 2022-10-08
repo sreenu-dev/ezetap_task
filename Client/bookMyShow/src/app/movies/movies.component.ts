@@ -44,13 +44,18 @@ export class MoviesComponent implements OnInit {
   currentSort:string='';
   nameSortOrder:string='desc';
   langSortOrder:string='desc';
+  emptyData:boolean=false;
   ngOnInit(): void {
    this.loadMoviesList(); 
   }
   loadMoviesList(){
+    this.moviesList=[];
     this.moviesService.getAdminData().subscribe((data:any)=>{
       if(data!=null){
         this.moviesList=data.movies
+        if(this.moviesList.length==0){
+          this.emptyData=true;
+        }
         this.movieListCopy=JSON.parse(JSON.stringify(this.moviesList))
 
         this.theatreList=data.theatres
@@ -97,11 +102,17 @@ export class MoviesComponent implements OnInit {
     }
   }
   movieDetailsClose(event:any){
-    console.log(event);
-    this.selectedMovieId=-1;
-    this.showMovieDetailsComponent=false;
-    this.showAddMovie=false;
-    this.loadMoviesList();
+    if(event=='close'){
+      this.selectedMovieId=-1;
+      this.showMovieDetailsComponent=false;
+      this.showAddMovie=false;
+    }else if(event=='update'){
+      this.selectedMovieId=-1;
+      this.showMovieDetailsComponent=false;
+      this.showAddMovie=false;
+      this.loadMoviesList();
+    }
+    
   }
   addMovie(){
     this.showAddMovie=true;

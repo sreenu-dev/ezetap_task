@@ -53,7 +53,7 @@ export class AddMovieComponent implements OnInit {
         console.log(data);
         if(data=='success'){
           this.toaster.success("Movie Added Successfully");
-          this.closePopup();
+          this.addMovieEmitter.emit("update")
         }else{
           this.toaster.error("Failed to add movie Data");
         }
