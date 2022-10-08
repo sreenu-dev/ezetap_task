@@ -1,0 +1,49 @@
+<div class="container editCustomModal">
+    <div class="d-flex">
+        <div>
+            <h3>Edit Details for {{selectedMovieName}}</h3>
+        </div>
+        <div class="ms-auto">
+            <div class="closeButton ms-auto" (click)="closePopup()" ><img class="closeImage" src="../../assets/images/close.svg"></div>
+        </div>
+    </div>
+    <form *ngIf="showEditForm" [formGroup]="theatreForm">
+        <div class="row p-4">
+            <div class="col-6">
+                <div class="form-group">
+                  <label for="">Name</label>
+                  <input type="text" formControlName="name"  [value]="updateName"
+                    class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+                  <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                  <label for="">Location</label>
+                  <input type="text" formControlName="location" [value]="updateLocation"
+                    class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+                  <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                  <label for="">Timings</label>
+                  <input type="text" formControlName="timings" [value]="updateTimings"
+                    class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+                  <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                  <label for="">Movie Price</label>
+                  <input type="number" formControlName="price"
+                    class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+                  <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
+                </div>
+            </div>
+            <div class="col-12 pt-4" style="text-align: center;">
+                <button class="btn btn-primary" (click)="updateTheatre()" >Submit</button>
+            </div>
+        </div>
+    </form>
+</div>

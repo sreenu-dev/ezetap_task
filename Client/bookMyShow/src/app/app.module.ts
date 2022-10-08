@@ -15,6 +15,7 @@ import { AddMovieComponent } from './add-movie/add-movie.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CommonModule } from '@angular/common';
 import { AddTheatreComponent } from './add-theatre/add-theatre.component';
+import { EditTheatreComponent } from './edit-theatre/edit-theatre.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AddTheatreComponent } from './add-theatre/add-theatre.component';
     MovieDetailsComponent,
     HeaderComponent,
     AddMovieComponent,
-    AddTheatreComponent
+    AddTheatreComponent,
+    EditTheatreComponent
 
   ],
   imports: [

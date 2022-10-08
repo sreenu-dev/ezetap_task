@@ -87,10 +87,28 @@ router.post('/saveTheatre',(req,res)=>{
                     if(err){
                         res.send(JSON.stringify(err));
                     }else{
-                        res.send("success");
+                        res.send(JSON.stringify("success"));
                     }
                 })
             }
+        }
+    })
+})
+
+router.post('/updateTheatre',(req,res)=>{
+    var theatreUpdateQuery=`UPDATE theatre SET name='${req.body.name}',timings='${req.body.timings}',location='${req.body.location}' WHERE theatre_id=${req.body.theatre_id}`
+    var theatreMovieUpdateQuery=`UPDATE theatremovies SET theatremovies_id=${req.body.theatreMovie_id},theatre_id=${req.body.theatre_id},movie_id=${req.body.movie_id},price=${req.body.price} WHERE theatremovies_id=${req.body.theatreMovie_id}`
+    db.query(theatreUpdateQuery,(err,row)=>{
+        if(err){
+            res.send(JSON.stringify(err))
+        }else{
+            db.query(theatreMovieUpdateQuery,(err,row)=>{
+                if(err){
+                    res.send(JSON.stringify(err))
+                }else{
+                    res.send(JSON.stringify("success"));
+                }
+            })
         }
     })
 })

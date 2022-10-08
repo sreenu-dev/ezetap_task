@@ -6,6 +6,8 @@ import { MoviesService } from '../services/movies.service';
 import { forkJoin } from "rxjs";
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { AdminData } from '../models/admindata.model';
+import * as $ from 'jquery';
+
 
 @Component({
   selector: 'app-movie-details',
@@ -33,6 +35,10 @@ export class MovieDetailsComponent implements OnInit {
   multiSelectDropdownSettings={};
 
   showAddTheatre:boolean=false;
+  showEditTheatre:boolean=false;
+  showMovieDetail:boolean=false;
+
+  selectedTheatreId:number=-1;
 
   constructor(
     private moviesService: MoviesService
@@ -44,6 +50,7 @@ export class MovieDetailsComponent implements OnInit {
     this.loadMovieDetails();
   }
   loadMovieDetails(){
+    this.showMovieDetail=false;
     this.showLocationDropdown=false;
     this.moviesService.getAdminData().subscribe((data:AdminData)=>{
       if(data!=null){
@@ -63,6 +70,10 @@ export class MovieDetailsComponent implements OnInit {
         
         this.getLocationList();
         this.theatreList=this.theatreList.filter(x=>this.requiredTheatreIDs.includes(x.theatre_id));
+        this.showMovieDetail=true;
+        $(()=>{
+          $(".modalBody")[0].click();
+        })
       }
     })
   }
@@ -115,10 +126,16 @@ export class MovieDetailsComponent implements OnInit {
   updateMovieDetails(event:any){
     if(event=='close'){
       this.showAddTheatre=false;
+      this.showEditTheatre=false;
     }
     else if(event=='update'){
       this.showAddTheatre=false;
+      this.showEditTheatre=false;
       this.loadMovieDetails();
     }
+  }
+  editTheatreDetails(theatre_id:number){
+    this.selectedTheatreId=theatre_id;
+    this.showEditTheatre=true;
   }
 }

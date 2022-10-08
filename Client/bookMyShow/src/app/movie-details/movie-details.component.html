@@ -1,6 +1,7 @@
-<div class="container" style="position:absolute; padding-left: 12rem;padding-top: 5rem;">
+<div class="container" *ngIf="showMovieDetail" style="position:absolute; padding-left: 12rem;padding-top: 5rem;">
     <div class="customModal">
         <app-add-theatre [selectedMovieId]="selectedMovieId" [selectedMovieName]="selectedMovieName" [adminData]="adminData" *ngIf="showAddTheatre" (addTheatreEmitter)="updateMovieDetails($event)"></app-add-theatre>
+        <app-edit-theatre *ngIf="showEditTheatre" [adminData]="adminData" [selectedMovieId]="selectedMovieId" [selectedTheatreId]="selectedTheatreId" (updateTheatreEmitter)="updateMovieDetails($event)"></app-edit-theatre>
         <div class="heading">
             <div class="title"><span class="h2">{{selectedMovieName}}</span></div>
             <div class="closeButton ms-auto" (click)="closePopup()" ><img class="closeImage" src="../../assets/images/close.svg"></div>
@@ -42,6 +43,7 @@
                             <th>Timings</th>
                             <th>Location</th>
                             <th>Price</th>
+                            <th>Edit</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,6 +52,11 @@
                             <td>{{theatre.timings}}</td>
                             <td>{{theatre.location}}</td>
                             <td>{{getPrice(theatre.theatre_id)}}</td>
+                            <td>
+                                <div class="col-1">
+                                    <div class="closeButton ms-auto" (click)="editTheatreDetails(theatre.theatre_id)" ><img class="closeImage" src="../../assets/images/edit.svg"></div>
+                                </div>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

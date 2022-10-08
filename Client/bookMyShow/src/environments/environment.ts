@@ -9,7 +9,8 @@ export const environment = {
   theatreMoviesRoute:'http://localhost:3000/movies/theatremoviesData',
   adminDataRoute:'http://localhost:3000/movies/adminData',
   saveMovieRoute:'http://localhost:3000/movies/saveMovie',
-  saveTheatreRoute:'http://localhost:3000/movies/saveTheatre'
+  saveTheatreRoute:'http://localhost:3000/movies/saveTheatre',
+  updateTheatreRoute:'http://localhost:3000/movies/updateTheatre'
 };
 
 /*

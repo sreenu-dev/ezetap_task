@@ -5,6 +5,6 @@ export const environment = {
   theatreMoviesRoute:'https://bmzserver.azurewebsites.net/movies/theatremoviesData',
   adminDataRoute:'https://bmzserver.azurewebsites.net/movies/adminData',
   saveMovieRoute:'https://bmzserver.azurewebsites.net/movies/saveMovie',
-  saveTheatreRoute:'https://bmzserver.azurewebsites.net/movies/saveTheatre'
-
+  saveTheatreRoute:'https://bmzserver.azurewebsites.net/movies/saveTheatre',
+  updateTheatreRoute:'https://bmzserver.azurewebsites.net/movies/updateTheatre'
 };
