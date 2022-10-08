@@ -1,0 +1,21 @@
+.sideBar{
+    height: 100%;
+    background-color: red;
+    width: 10rem;
+    /* justify-content: flex-end; */
+    display: flex;
+    flex-direction: column;
+}
+.moviesArea{
+    text-align: end;
+}
+.moviesArea:hover{
+    background-color: darkred;
+}
+.moviesBtn{
+    padding-right: 1rem;
+    cursor: pointer;
+}
+.sideBarTitle{
+    margin-bottom: 2rem;
+}

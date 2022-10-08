@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
+  @Output() sideBarEventEmitter: EventEmitter<any>=new EventEmitter();
   constructor(
     private router:Router
   ) { }
@@ -16,5 +17,8 @@ export class HeaderComponent implements OnInit {
   }
   goToLanding(){
     this.router.navigate(['/landing']);
+  }
+  toggleSideBar(){
+    this.sideBarEventEmitter.emit("toggle");
   }
 }

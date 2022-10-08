@@ -16,6 +16,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CommonModule } from '@angular/common';
 import { AddTheatreComponent } from './add-theatre/add-theatre.component';
 import { EditTheatreComponent } from './edit-theatre/edit-theatre.component';
+import { SideNavBarComponent } from './side-nav-bar/side-nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { EditTheatreComponent } from './edit-theatre/edit-theatre.component';
     HeaderComponent,
     AddMovieComponent,
     AddTheatreComponent,
-    EditTheatreComponent
+    EditTheatreComponent,
+    SideNavBarComponent
 
   ],
   imports: [

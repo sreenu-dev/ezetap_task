@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  showSideBar=false;
   title = 'bookMyShow';
+  toggleSideBar(){
+    this.showSideBar=!this.showSideBar;
+  }
 }
