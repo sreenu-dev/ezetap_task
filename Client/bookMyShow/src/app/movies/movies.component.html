@@ -11,6 +11,7 @@
 <div *ngIf="moviesList.length!=0">
     <div class="d-flex filterArea">
         <div *ngIf="showLanguageFilter" class="" style="width: 12rem;margin-right: 1rem;">
+            Languages
             <ng-multiselect-dropdown
                 [placeholder]="'Filter By Language'"
                 [settings]="multiSelectDropdownSettings"
@@ -23,6 +24,7 @@
             </ng-multiselect-dropdown>
         </div>
         <div *ngIf="showGenreFilter" class="me-3" style="width: 12rem;">
+            Genre
             <ng-multiselect-dropdown
                 [placeholder]="'Filter By Genre'"
                 [settings]="multiSelectDropdownSettings"
@@ -34,7 +36,7 @@
                 (onDeSelectAll)="genreFilter($event)">
             </ng-multiselect-dropdown>
         </div>
-        <div class="me-auto ms-2">
+        <div class="me-auto mt-auto mb-auto ms-2">
             <div class="btn btn-primary" (click)="clearFilter()">Reset Filters</div>
         </div>
     </div>

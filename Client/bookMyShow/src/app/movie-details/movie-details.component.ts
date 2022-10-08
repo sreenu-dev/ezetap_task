@@ -80,7 +80,7 @@ export class MovieDetailsComponent implements OnInit {
     })
   }
   closePopup(){
-    this.movieDetailsEmitter.emit('close');
+    this.movieDetailsEmitter.emit('update');
   }
   getLocationList(){
     let theatresFilter=this.theatreMoviesList.filter(x=>x.movie_id==this.selectedMovieId);
