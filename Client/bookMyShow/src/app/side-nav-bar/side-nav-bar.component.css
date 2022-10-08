@@ -1,6 +1,6 @@
 .sideBar{
     height: 100%;
-    background-color: red;
+    background-color: #e9384c;
     width: 10rem;
     /* justify-content: flex-end; */
     display: flex;
@@ -13,9 +13,11 @@
     background-color: darkred;
 }
 .moviesBtn{
+    padding: 1rem 0rem;
     padding-right: 1rem;
     cursor: pointer;
 }
 .sideBarTitle{
-    margin-bottom: 2rem;
+    padding-bottom : 1rem;
+    border-bottom: 1px dotted;
 }
