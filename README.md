@@ -37,4 +37,4 @@ Link for the deployed Website : [BookMyShow Admin Page](https://bmsclient.z13.we
 ### Coding Details
     The UI Code is in Client/bookMyShow
     The backend code is in Server2/bmsserver
-    MySQL Scheme is uploaded naming dbschema.sql
+    MySQL Schema is uploaded: dbschema.sql
