@@ -83,6 +83,7 @@ export class MovieDetailsComponent implements OnInit {
     this.movieDetailsEmitter.emit('update');
   }
   getLocationList(){
+    this.locationData=[];
     let theatresFilter=this.theatreMoviesList.filter(x=>x.movie_id==this.selectedMovieId);
     theatresFilter.forEach(a=>{
       let templocation=this.theatreList.find(t=>t.theatre_id==a.theatre_id)?.location;

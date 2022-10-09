@@ -2,6 +2,9 @@ var express=require('express')
 var router=express.Router()
 var db=require('./connection');
 
+/**
+ * Fetch Movies Related Data from DB
+ */
 router.get('/moviesData',(req,res)=>{
     db.query('select * from movies',(err,row)=>{
         if(err){
@@ -11,6 +14,10 @@ router.get('/moviesData',(req,res)=>{
         }
     })
 })
+
+/**
+ * Fetch Theatres Related Data from DB
+ */
 router.get('/theatresData',(req,res)=>{
     db.query('select * from theatre',(err,row)=>{
         if(err){
@@ -20,6 +27,10 @@ router.get('/theatresData',(req,res)=>{
         }
     })
 })
+
+/**
+ * Fetch TheaterMovies Related Data from DB
+ */
 router.get('/theatremoviesData',(req,res)=>{
     db.query('select * from theatremovies',(err,row)=>{
         if(err){
@@ -29,6 +40,10 @@ router.get('/theatremoviesData',(req,res)=>{
         }
     })
 })
+
+/**
+ * Fetch the adminData(Movies, Theatres, TheatreMoives) from DB
+ */
 router.get('/adminData',(req,res)=>{
     var movieData=[]
     var theatreData=[]
@@ -56,6 +71,10 @@ router.get('/adminData',(req,res)=>{
         })
     })
 })
+
+/**
+ * Add new Movie Details to DB
+ */
 router.post('/saveMovie',(req,res)=>{
     var movieInsertQuery=`INSERT INTO movies (movie_id, name, cast, language, genre) VALUES (${req.body.movie_id}, '${req.body.name}', '${req.body.cast}', '${req.body.language}','${req.body.genre}' )`;
     var theatreMovieInsertQuery=`INSERT INTO theatremovies (theatremovies_id, theatre_id, movie_id, price) VALUES (${req.body.theatreMovie_id}, ${req.body.theatre}, ${req.body.movie_id}, ${req.body.price})`;
@@ -75,6 +94,10 @@ router.post('/saveMovie',(req,res)=>{
         }
     })
 })
+
+/**
+ * Add new Theatre Details to DB
+ */
 router.post('/saveTheatre',(req,res)=>{
     let theartreQuery=`INSERT INTO theatre (theatre_id, name, timings, location) VALUES (${req.body.theatre_id}, '${req.body.name}', '${req.body.timings}', '${req.body.location}')`
     db.query(theartreQuery,(err,row)=>{
@@ -95,6 +118,9 @@ router.post('/saveTheatre',(req,res)=>{
     })
 })
 
+/**
+ * Update Theatre Details
+ */
 router.post('/updateTheatre',(req,res)=>{
     var theatreUpdateQuery=`UPDATE theatre SET name='${req.body.name}',timings='${req.body.timings}',location='${req.body.location}' WHERE theatre_id=${req.body.theatre_id}`
     var theatreMovieUpdateQuery=`UPDATE theatremovies SET theatremovies_id=${req.body.theatreMovie_id},theatre_id=${req.body.theatre_id},movie_id=${req.body.movie_id},price=${req.body.price} WHERE theatremovies_id=${req.body.theatreMovie_id}`

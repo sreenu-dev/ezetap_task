@@ -82,6 +82,6 @@ export class EditTheatreComponent implements OnInit {
     }
   }
   closePopup(){
-    this.updateTheatreEmitter.emit("update");
+    this.updateTheatreEmitter.emit("add");
   }
 }
