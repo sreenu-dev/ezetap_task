@@ -18,6 +18,7 @@ export class AddMovieComponent implements OnInit {
   moviesLength:number=-1;
   theatresLength:number=-1;
   theatreMoviesLength:number=-1;
+  disableSubmit:boolean=false;
 
   @Output() addMovieEmitter:EventEmitter<any>=new EventEmitter();
   constructor(
@@ -49,6 +50,7 @@ export class AddMovieComponent implements OnInit {
       newMovieData.cast=this.moviesForm.controls['cast'].value;
       newMovieData.language=this.moviesForm.controls['language'].value;
       newMovieData.genre=this.moviesForm.controls['genre'].value;
+      this.disableSubmit=true;
       this.moviesService.saveMovie(newMovieData).subscribe((data:any)=>{
         console.log(data);
         if(data=='success'){
@@ -56,6 +58,7 @@ export class AddMovieComponent implements OnInit {
           this.addMovieEmitter.emit("update")
         }else{
           this.toaster.error("Failed to add movie Data");
+          this.disableSubmit=false;
         }
         
       })

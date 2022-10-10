@@ -26,6 +26,7 @@ export class AddTheatreComponent implements OnInit {
     'price':new FormControl(null,[Validators.required])
   });
 
+  disableSubmit:boolean=false;
   constructor(
     private moviesService:MoviesService,
     private toaster:ToastrService
@@ -40,6 +41,7 @@ export class AddTheatreComponent implements OnInit {
   }
   saveTheatre(){
     if(this.theatreForm.valid){
+      this.disableSubmit=true;
       let theatreAddData:AddTheatreData=new AddTheatreData();
       theatreAddData.movie_id=this.selectedMovieId;
       theatreAddData.name=this.theatreForm.controls['name'].value;
@@ -48,17 +50,20 @@ export class AddTheatreComponent implements OnInit {
       theatreAddData.price=this.theatreForm.controls['price'].value;
       theatreAddData.theatre_id=this.adminData.theatres.length+1;
       theatreAddData.theatreMovie_id=this.adminData.theatreMovies.length+1;
-      if(this.adminData.theatres.find(x=>x.name==theatreAddData.name)==undefined){
+      let theatreIds=this.adminData.theatreMovies.filter(x=>x.movie_id==this.selectedMovieId).map(x=>x.theatre_id);
+      if(this.adminData.theatres.find(x=>x.name==theatreAddData.name && theatreIds.includes(x.theatre_id))==undefined){
         this.moviesService.saveTheatre(theatreAddData).subscribe((data:any)=>{
           if(data=='success'){
             this.toaster.success("Theater Added Successfully");
             this.addTheatreEmitter.emit("add");
           }else{
             this.toaster.error("Failed to Add Theatre")
+            this.disableSubmit=false;
           }
         })
       }else{
         this.toaster.error("Theatre Already Exist!!")
+        this.disableSubmit=false;
       }
     }else{
       this.toaster.warning("Please enter all the details");

@@ -43,7 +43,7 @@
                 </div>
             </div>
             <div class="col-12 pt-4" style="text-align: center;">
-                <button class="btn btn-primary" (click)="updateTheatre()" >Update</button>
+                <button class="btn btn-primary" (click)="updateTheatre()" [disabled]="disableSubmit || !this.theatreForm.valid" >Update</button>
             </div>
         </div>
     </form>

@@ -44,7 +44,7 @@
                   </div>
               </div>
               <div class="col-12 pt-4" style="text-align: center;">
-                  <button class="btn btn-primary" (click)="saveTheatre()" >Submit</button>
+                  <button class="btn btn-primary" (click)="saveTheatre()" [disabled]="disableSubmit || !this.theatreForm.valid" >Submit</button>
               </div>
           </div>
       </div>

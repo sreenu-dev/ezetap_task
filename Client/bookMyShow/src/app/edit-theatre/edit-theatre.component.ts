@@ -37,6 +37,8 @@ export class EditTheatreComponent implements OnInit {
     'timings':new FormControl(null,[Validators.required]),
     'price':new FormControl(null,[Validators.required])
   });
+  
+  disableSubmit:boolean=false;
   constructor(
     private moviesService:MoviesService,
     private toaster:ToastrService
@@ -61,6 +63,7 @@ export class EditTheatreComponent implements OnInit {
   }
   updateTheatre(){
     if(this.theatreForm.valid){
+      this.disableSubmit=true;
       let theatreAddData:AddTheatreData=new AddTheatreData();
       theatreAddData.movie_id=this.selectedMovieId;
       theatreAddData.name=this.theatreForm.controls['name'].value;
@@ -70,7 +73,8 @@ export class EditTheatreComponent implements OnInit {
       theatreAddData.theatre_id=this.selectedTheatreId;
       let theatreMovieId=this.adminData.theatreMovies.find(x=>x.movie_id==this.selectedMovieId && x.theatre_id==this.selectedTheatreId)?.theatremovies_id;
       theatreAddData.theatreMovie_id=theatreMovieId!=undefined?theatreMovieId:-1;
-      let isNameAlreadyExist=this.adminData.theatres.filter(x=>x.theatre_id!=this.selectedTheatreId).find(x=>x.name==theatreAddData.name)==undefined?false:true;
+      let theatreIDs=this.adminData.theatreMovies.filter(x=>x.movie_id==this.selectedMovieId).map(x=>x.theatre_id);
+      let isNameAlreadyExist=this.adminData.theatres.filter(x=>x.theatre_id!=this.selectedTheatreId && theatreIDs.includes(x.theatre_id)).find(x=>x.name==theatreAddData.name)==undefined?false:true;
       if(!isNameAlreadyExist){
         this.moviesService.updateTheatre(theatreAddData).subscribe((data:any)=>{
           console.log(data);
@@ -79,10 +83,12 @@ export class EditTheatreComponent implements OnInit {
             this.closePopup();
           }else{
             this.toaster.error("Failed to update theatre Details")
+            this.disableSubmit=false;
           }
         })
       }else{
         this.toaster.error("Theatre Name already exist")
+        this.disableSubmit=false;
       }
     }else{
       this.toaster.warning("Please add all the details");
