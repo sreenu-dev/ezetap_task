@@ -48,14 +48,20 @@ export class AddTheatreComponent implements OnInit {
       theatreAddData.price=this.theatreForm.controls['price'].value;
       theatreAddData.theatre_id=this.adminData.theatres.length+1;
       theatreAddData.theatreMovie_id=this.adminData.theatreMovies.length+1;
-      this.moviesService.saveTheatre(theatreAddData).subscribe((data:any)=>{
-        if(data=='success'){
-          this.toaster.success("Theater Added Successfully");
-          this.addTheatreEmitter.emit("add");
-        }else{
-          this.toaster.error("Failed to Add Theatre")
-        }
-      })
+      if(this.adminData.theatres.find(x=>x.name==theatreAddData.name)==undefined){
+        this.moviesService.saveTheatre(theatreAddData).subscribe((data:any)=>{
+          if(data=='success'){
+            this.toaster.success("Theater Added Successfully");
+            this.addTheatreEmitter.emit("add");
+          }else{
+            this.toaster.error("Failed to Add Theatre")
+          }
+        })
+      }else{
+        this.toaster.error("Theatre Already Exist!!")
+      }
+    }else{
+      this.toaster.warning("Please enter all the details");
     }
   }
 }

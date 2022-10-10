@@ -70,15 +70,22 @@ export class EditTheatreComponent implements OnInit {
       theatreAddData.theatre_id=this.selectedTheatreId;
       let theatreMovieId=this.adminData.theatreMovies.find(x=>x.movie_id==this.selectedMovieId && x.theatre_id==this.selectedTheatreId)?.theatremovies_id;
       theatreAddData.theatreMovie_id=theatreMovieId!=undefined?theatreMovieId:-1;
-      this.moviesService.updateTheatre(theatreAddData).subscribe((data:any)=>{
-        console.log(data);
-        if(data=='success'){
-          this.toaster.success("Theatre Details Updated Successfully")
-          this.closePopup();
-        }else{
-          this.toaster.error("Failed to update theatre Details")
-        }
-      })
+      let isNameAlreadyExist=this.adminData.theatres.filter(x=>x.theatre_id!=this.selectedTheatreId).find(x=>x.name==theatreAddData.name)==undefined?false:true;
+      if(!isNameAlreadyExist){
+        this.moviesService.updateTheatre(theatreAddData).subscribe((data:any)=>{
+          console.log(data);
+          if(data=='success'){
+            this.toaster.success("Theatre Details Updated Successfully")
+            this.closePopup();
+          }else{
+            this.toaster.error("Failed to update theatre Details")
+          }
+        })
+      }else{
+        this.toaster.error("Theatre Name already exist")
+      }
+    }else{
+      this.toaster.warning("Please add all the details");
     }
   }
   closePopup(){
