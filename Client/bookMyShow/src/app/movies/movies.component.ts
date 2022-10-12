@@ -40,6 +40,8 @@ export class MoviesComponent implements OnInit {
   showLanguageFilter:boolean=false;
   showGenreFilter:boolean=false;
 
+  showContactMessage=false;
+
   //Sorting
   currentSort:string='';
   nameSortOrder:string='desc';
@@ -47,10 +49,16 @@ export class MoviesComponent implements OnInit {
   emptyData:boolean=false;
   ngOnInit(): void {
    this.loadMoviesList(); 
+   setTimeout(()=>{
+    if(this.movieListCopy.length==0 && !this.emptyData){
+      this.showContactMessage=true;
+    }
+   },8000)
   }
   loadMoviesList(){
     this.moviesList=[];
     this.moviesService.getAdminData().subscribe((data:any)=>{
+      data=null;
       if(data!=null){
         this.moviesList=data.movies
         if(this.moviesList.length==0){
