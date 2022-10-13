@@ -58,7 +58,6 @@ export class MoviesComponent implements OnInit {
   loadMoviesList(){
     this.moviesList=[];
     this.moviesService.getAdminData().subscribe((data:any)=>{
-      data=null;
       if(data!=null){
         this.moviesList=data.movies
         if(this.moviesList.length==0){
