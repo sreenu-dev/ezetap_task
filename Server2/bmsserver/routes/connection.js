@@ -1,7 +1,7 @@
 var mysql = require('mysql');
 var connection = mysql.createConnection({
-    host     : 'bmz.mysql.database.azure.com',
-    user     : 'sreeni@bmz',
+    host     : 'bmsshrink.mysql.database.azure.com',
+    user     : 'sreeni_bms',
     password : '123456789@a',
     database : 'bmsezetap'
 });
